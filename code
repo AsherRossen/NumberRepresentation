@@ -1,0 +1,49 @@
+import java.util.Scanner;
+
+public class BtoD {
+	
+	public BtoD (String ans, String input) {
+		if (ans.equalsIgnoreCase ("decimal")) {
+			System.out.println(this.toDec (input));
+		}
+		else {
+			System.out.println(this.toBin(input));
+		}
+	}
+	
+	private String toDec (String inny) {
+		String ret = "";
+		long sum = 0;
+		int counter = 0;
+		for (int i = inny.length()-1; i>=0; i--) {
+			if (inny.charAt(i)=='1') {
+				sum+= Math.pow(2, counter);
+			}
+			counter++;
+		}
+		
+		ret=""+sum;
+		return ret;
+	}
+	
+	private String toBin (String inny) {
+		String ret = "";
+		long l = Long.parseLong(inny);
+		while (l>0) {
+			ret = l%2+ret;
+			l=l/2;
+		}
+		
+		return ret;
+	}
+	
+	public static void main (String[]args) {
+		Scanner keyboard = new Scanner (System.in);
+		System.out.println("Would you like to convert to \"decimal\" or to \"binary\"?");
+		String s = keyboard.next();
+		System.out.println("What would you like to convert?");
+		String str = keyboard.next();
+		
+		BtoD tester = new BtoD (s, str);
+	}
+}
